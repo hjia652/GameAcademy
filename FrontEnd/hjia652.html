@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Game Acedemy</title>
+    <link href="hjia652.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="https://cws.auckland.ac.nz/gas/api/FavIcon">
+    
+</head>
+<body>
+    <script src="hjia652.js"></script>
+    <table style="background-color: black; width: 100%; height: 100px;">
+        <tr style="cursor: pointer;">
+            <td><img src="hjia652.svg" style="width: 135px; height: 100px; background-color: white"/></td>
+            <td onclick="homepage()" style="width: 13%; text-align: center; color: red;">Home</td>
+            <td onclick="showshop()" style="width: 13%; text-align: center; color: orange; background-color: #151515">Academy Shop</td>
+            <td onclick="register()" style="width: 13%; text-align: center; color: yellow;">Register</td>
+            <td onclick="login()" style="width: 13%; text-align: center; color: green; background-color: #151515">Login</td>
+            <td onclick="game()" style="width: 13%; text-align: center; color: cyan;">Game of Chess</td>
+            <td onclick="guestbook()" style="width: 13%; text-align: center; color: blue; background-color: #151515">Guest Book</td>
+            <td onclick="gamelog()" style="width: 13%; text-align: center; color: purple;">Game Log</td>
+        </tr>
+    </table>
+    <div id="isloggedin" style="text-align: right;"></div>
+    <div id="home">
+        <div class="hub">
+            <span contenteditable="false">Game</span>
+            <span contenteditable="false">Academy</span>
+        </div>
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+        <p style="text-align: center;">Thank you for visiting Game Academy</p>
+        <p style="text-align: center;">All rights reserved</p>
+        <script>
+            const fetchPromise = fetch("https://cws.auckland.ac.nz/gas/api/Version", {
+                headers: {
+                    "Accept": "application/XML",
+                    }
+                })
+            const streamPromise = fetchPromise.then((response) => response.text());
+            streamPromise.then((data) => {document.getElementById("ourversion").innerText = data;})
+        </script>
+        <p style="text-align: center;" id="ourversion"></p>
+    </div>
+    
+    <div id="shop">
+        <div class="shoppingpage">
+            <h1>Shop</h1>
+            <label>Search for Items</label>
+            <input id="searchForItem"></input>
+            <button onclick="Search()" type="button">Search</button>
+            <table id="shopbody"></table>
+        </div>
+        
+        
+    </div>
+    <div style="text-align: center;"id="register">
+        <br>
+        <h1>Sign Up</h1>
+        <br>
+        <br>
+        <div>
+            <label>New Username</label>
+            <br>
+            <br>
+            <input id="newusername" type="text">
+        </div>
+        <br>
+        <div>
+            <label>Choose Your Password</label>
+            <br>
+            <br>
+            <input id="newpassword" type="text">
+        </div>
+        <br>
+        <div>
+            <label>Your Address</label>
+            <br>
+            <br>
+            <input id="newaddy" type="text">
+        </div>
+        <br>
+        <button onclick="Register()" type="button">Register</button>
+        <br>
+        <br>
+        <div id="response"></div>
+        <br>
+    </div>
+    <div style="text-align: center;" id="login">
+        <br>
+        <h1>Sign In</h1>
+        <br>
+        <br>
+        <div>
+            <label>Username</label>
+            <br>
+            <br>
+            <input id="u" type="text">
+        </div>
+        <br>
+        <div>
+            <label>Password</label>
+            <br>
+            <br>
+            <input id="pw" type="text">
+        </div>
+        <br>
+        <button onclick="Login()" type="button">Login</button>
+        <br>
+        <br>
+        <div id="loginresponse"></div>
+    </div>
+    <div id="game">
+        <br>
+        <h2 style="text-align: center; background-color: grey;">Game</h2>
+        <div id="container">
+            <ul>
+                <li class = "border"></li>
+                <li class = "border border-font">a</li>
+                <li class = "border border-font">b</li>
+                <li class = "border border-font">c</li>
+                <li class = "border border-font">d</li>
+                <li class = "border border-font">e</li>
+                <li class = "border border-font">f</li>
+                <li class = "border border-font">g</li>
+                <li class = "border border-font">h</li>
+                <li class = "border" ondrop="takedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Bin.svg"></li>
+            </ul>
+            <ul>
+                <li class = "border border-font">8</li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Rb.svg" id="8a" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Nb.svg" id="8b" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Bb.svg" id="8c" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qb.svg" id="8d" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Kb.svg" id="8e" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Bb.svg" id="8f" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Nb.svg" id="8g" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Rb.svg" id="8h" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qb.svg" id="8q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+            </ul>
+            <ul>
+                <li class = "border border-font">7</li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7a" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7b" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7c" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7d" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7e" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7f" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7g" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pb.svg" id="7h" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qb.svg" id="7q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+            </ul>
+            <ul>
+                <li class = "border border-font">6</li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qb.svg" id="6q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+            </ul>
+            <ul>
+                <li class = "border border-font">5</li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qb.svg" id="5q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+            </ul>
+            <ul>
+                <li class = "border border-font">4</li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qw.svg" id="4q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+
+            </ul>
+            <ul>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)">3</li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qw.svg" id="3q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+
+            </ul>
+            <ul>
+                <li class = "border border-font">2</li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2a" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2b" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2c" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2d" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2e" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2f" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2g" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Pw.svg" id="2h" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qw.svg" id="2q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+            </ul>
+            <ul>
+                <li class = "border border-font">1</li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Rw.svg" id="1a" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Nw.svg" id="1b" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Bw.svg" id="1c" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qw.svg" id="1d" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Kw.svg" id="1e" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Bw.svg" id="1f" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-blue border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Nw.svg" id="1g" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "bg-white border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Rw.svg" id="1h" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+                <li class = "border border-font" ondrop="placedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Qw.svg" id="1q" ondragstart="gameMove(event)" ondrop="placedown(event)" ondragover="dragOver(event)"></li>
+            </ul>
+            <ul>
+                <li class = "border" ondrop="takedown(event)" ondragover="dragOver(event)"><img src="https://cws.auckland.ac.nz/gas/images/Bin.svg"></li>
+                <li class = "border border-font">a</li>
+                <li class = "border border-font">b</li>
+                <li class = "border border-font">c</li>
+                <li class = "border border-font">d</li>
+                <li class = "border border-font">e</li>
+                <li class = "border border-font">f</li>
+                <li class = "border border-font">g</li>
+                <li class = "border border-font">h</li>
+                <li class = "border"></li>
+            </ul>
+        </div>
+        <table style="width: 100%; height: 100px; text-align: center;">
+            <tr style="cursor: pointer;">
+                <td onclick="PlayGame()" style="width: 25%; text-align: center; color: black; background-color: azure" id="PlayGame">Play</td>
+                <td onclick="MyMove()" style="width: 25%; text-align: center; color: black; background-color: snow; display: none" id="MyMove">Send My Move</td>
+                <td onclick="TheirMove()" style="width: 25%; text-align: center; color: black; background-color: azure; display: none" id="TheirMove">Get Their Move</td>
+                <td onclick="Quit()" style="width: 25%; text-align: center; color: black; background-color: snow; display: none" id="Quit">Quit Game</td>
+            </tr>
+        </table>
+        <br>
+        <div id="gamepageresponse" style="text-align: center;"></div>
+        <br>
+    </div>
+    <div id="guestbook">
+        <div class="gb">
+            <h1 style="text-align: center;">Guest Book</h1>
+            <br>
+            <h2>Please Sign Our Guestbook</h2>
+            <br>
+            <p>All comments are part of the game, please be respectful.</p>
+            <br>
+            <div>
+                <label>Your Comments Here</label>
+                <input id="com" type="text"></input>
+
+            </div>
+            <br>
+            <div>
+                <label>Your Name Here</label>
+                <input id="username" type="text"></input>
+            </div>
+            <button onclick="writeComment()" type="button">Publish</button>
+            <br>
+            <hr>
+            <h3>Recent Entries</h3>
+            <div id="getComments"></div>
+        </div>
+        
+    </div>
+    <div id="gamelog">
+        <br>
+        <div style="text-align: center;">
+            <button onclick="loadgamelog()" type="button" >Refresh</button>
+        </div>
+        
+        <div id="gl"></div>
+        <div id="played" style="padding: 10px; font-size: 10px; overflow: auto;"></div>
+        <div id="completed" style="padding: 10px; font-size: 10px; overflow: auto;"></div>
+        <br>
+    </div>
+</body>
+</html>

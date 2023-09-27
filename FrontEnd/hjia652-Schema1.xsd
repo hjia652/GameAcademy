@@ -1,0 +1,108 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="movestype">
+        <xs:sequence>
+            <xs:element name="move" type="moveType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="moveType">
+        <xs:all>
+            <xs:element name="piece">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Kb"/>
+                        <xs:enumeration value="Qb"/>
+                        <xs:enumeration value="Rb"/>
+                        <xs:enumeration value="Bb"/>
+                        <xs:enumeration value="Nb"/>
+                        <xs:enumeration value="Pb"/>
+                        <xs:enumeration value="Kw"/>
+                        <xs:enumeration value="Qw"/>
+                        <xs:enumeration value="Rw"/>
+                        <xs:enumeration value="Bw"/>
+                        <xs:enumeration value="Nw"/>
+                        <xs:enumeration value="Pw"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="from">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[a-h]{1}[1-8]{1}" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="to">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="bin"/>
+                        <xs:enumeration value="a1"/>
+                        <xs:enumeration value="a2"/>
+                        <xs:enumeration value="a3"/>
+                        <xs:enumeration value="a4"/>
+                        <xs:enumeration value="a5"/>
+                        <xs:enumeration value="a6"/>
+                        <xs:enumeration value="a7"/>
+                        <xs:enumeration value="a8"/>
+                        <xs:enumeration value="b1"/>
+                        <xs:enumeration value="b2"/>
+                        <xs:enumeration value="b3"/>
+                        <xs:enumeration value="b4"/>
+                        <xs:enumeration value="b5"/>
+                        <xs:enumeration value="b6"/>
+                        <xs:enumeration value="b7"/>
+                        <xs:enumeration value="b8"/>
+                        <xs:enumeration value="c1"/>
+                        <xs:enumeration value="c2"/>
+                        <xs:enumeration value="c3"/>
+                        <xs:enumeration value="c4"/>
+                        <xs:enumeration value="c5"/>
+                        <xs:enumeration value="c6"/>
+                        <xs:enumeration value="c7"/>
+                        <xs:enumeration value="c8"/>
+                        <xs:enumeration value="d1"/>
+                        <xs:enumeration value="d2"/>
+                        <xs:enumeration value="d3"/>
+                        <xs:enumeration value="d4"/>
+                        <xs:enumeration value="d5"/>
+                        <xs:enumeration value="d6"/>
+                        <xs:enumeration value="d7"/>
+                        <xs:enumeration value="d8"/>
+                        <xs:enumeration value="e1"/>
+                        <xs:enumeration value="e2"/>
+                        <xs:enumeration value="e3"/>
+                        <xs:enumeration value="e4"/>
+                        <xs:enumeration value="e5"/>
+                        <xs:enumeration value="e6"/>
+                        <xs:enumeration value="e7"/>
+                        <xs:enumeration value="e8"/>
+                        <xs:enumeration value="f1"/>
+                        <xs:enumeration value="f2"/>
+                        <xs:enumeration value="f3"/>
+                        <xs:enumeration value="f4"/>
+                        <xs:enumeration value="f5"/>
+                        <xs:enumeration value="f6"/>
+                        <xs:enumeration value="f7"/>
+                        <xs:enumeration value="f8"/>
+                        <xs:enumeration value="g1"/>
+                        <xs:enumeration value="g2"/>
+                        <xs:enumeration value="g3"/>
+                        <xs:enumeration value="g4"/>
+                        <xs:enumeration value="g5"/>
+                        <xs:enumeration value="g6"/>
+                        <xs:enumeration value="g7"/>
+                        <xs:enumeration value="g8"/>
+                        <xs:enumeration value="h1"/>
+                        <xs:enumeration value="h2"/>
+                        <xs:enumeration value="h3"/>
+                        <xs:enumeration value="h4"/>
+                        <xs:enumeration value="h5"/>
+                        <xs:enumeration value="h6"/>
+                        <xs:enumeration value="h7"/>
+                        <xs:enumeration value="h8"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+    <xs:element name="moves" type="movestype"/>
+</xs:schema>

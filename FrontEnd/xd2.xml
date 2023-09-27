@@ -1,0 +1,10 @@
+<moves>
+   <move piece="Rb">
+      <to>bin</to>
+      <from>a6</from>
+   </move>
+   <move piece="Pw">
+      <from>b5</from>
+      <to>a6</to>
+   </move>
+</moves>
